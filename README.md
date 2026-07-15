@@ -29,3 +29,4 @@ npm run build
 ```
 
 This project is a frontend UI mockup only. It does not connect to wallets, execute trades, or process deposits.
+# goblin-project
