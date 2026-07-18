@@ -7,10 +7,13 @@ connect a real Supabase project so users share persisted data.
 ## 1. Create a Supabase project
 - Go to https://supabase.com/dashboard → **New project**.
 - Note the database password.
-- Once ready, open **SQL Editor → New query**, paste the contents of
-  `supabase/migrations/20240101000000_initial_schema.sql` and click **Run**,
-  then do the same with `supabase/migrations/20240102000000_balances_and_triggers.sql`
-  (order matters).
+- Once ready, open **SQL Editor → New query**, paste the **entire** contents of
+  `supabase/ALL_MIGRATIONS.sql` (a combined, ordered, idempotent run of every
+  file in `supabase/migrations/`) and click **Run**. This creates all tables
+  (`profiles`, `deposits`, `stakes`, `transactions`, `launchpad_allocations`,
+  `balances`), the `role`/`tier`/`allocation_id` columns, the RLS policies, and
+  the `adjust_balance` function. Running the individual migration files one by
+  one also works, but the combined file is the single source of truth.
 
 ## 2. Get your credentials
 - **Project Settings → API**: copy **Project URL** and the **anon public** key.

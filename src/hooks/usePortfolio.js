@@ -32,10 +32,10 @@ export function usePortfolio(userId) {
       try {
         const [balanceRes, deposits, stakes, transactions, allocations] = await Promise.all([
           getBalance(userId).catch(() => ({ available_balance: 0 })),
-          getUserDeposits(userId),
-          getUserStakes(userId),
-          getUserTransactions(userId),
-          getUserAllocations(userId),
+          getUserDeposits(userId).catch(() => []),
+          getUserStakes(userId).catch(() => []),
+          getUserTransactions(userId).catch(() => []),
+          getUserAllocations(userId).catch(() => []),
         ]);
 
         if (cancelled) return;
