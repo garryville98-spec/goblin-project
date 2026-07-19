@@ -12,10 +12,11 @@ const fmt = (n) =>
 
 const PORTFOLIO_TOTAL = 50000;
 
-// Demo capital allocation: total $50,000 with $18,600 available; the rest is
-// distributed across the other investment categories.
+// Demo capital allocation: total $50,000. Available cash is now $0; the
+// $18,600 previously shown as available cash is represented as Liquid asset.
 const capitalAllocation = [
-  { label: 'Available cash', amount: 18600, color: '#59ff9b' },
+  { label: 'Available cash', amount: 0, color: '#59ff9b' },
+  { label: 'Liquid asset', amount: 18600, color: '#4dd0e1' },
   { label: 'Fixed deposits', amount: 22400, color: '#ffd166' },
   { label: 'Stakepools', amount: 6000, color: '#a78bfa' },
   { label: 'Launchpad reserve', amount: 3000, color: '#ff5f7a' },
