@@ -1,14 +1,14 @@
 export const cryptoPrices = [
-  { symbol: 'BTC', name: 'Bitcoin', price: 62868.44, change: 1.22, volume: '$42.8B' },
-  { symbol: 'SOL', name: 'Solana', price: 77.98, change: 0.77, volume: '$4.1B' },
-  { symbol: 'ETH', name: 'Ethereum', price: 1752.14, change: 0.82, volume: '$18.6B' },
-  { symbol: 'BNB', name: 'BNB', price: 570.98, change: 1.43, volume: '$1.7B' },
+  { symbol: 'BTC', name: 'Bitcoin', price: 67500.00, change: 1.22, volume: '$42.8B' },
+  { symbol: 'SOL', name: 'Solana', price: 165.40, change: 0.77, volume: '$4.1B' },
+  { symbol: 'ETH', name: 'Ethereum', price: 3300.00, change: 0.82, volume: '$18.6B' },
+  { symbol: 'BNB', name: 'BNB', price: 605.20, change: 1.43, volume: '$1.7B' },
 ];
 
 // Shared Solana treasury wallet used for all SOL-denominated payments
 // (stakepool deposits, allocation ID service fees, launchpad allocations).
 export const SOL_WALLET =
-  import.meta.env.VITE_SOL_WALLET || '8Cxe38fqimm6eLxzVS7HeLziCT3cdAwqL8Y21XKqDXuE';
+  import.meta.env.VITE_SOL_WALLET || '3rXXcwzLBGcpDQw7HmWFyJWC5FeDyVCAH4vwGU4pAh9w';
 
 export const dashboardSnapshot = {
   title: 'Private Desk',
@@ -31,6 +31,7 @@ export const portfolioAllocation = [
   { label: 'Fixed deposits', value: '32%', amount: '$15,276', color: '#ffd166' },
   { label: 'Stakepools', value: '15%', amount: '$7,161', color: '#a78bfa' },
   { label: 'Launchpad reserve', value: '5%', amount: '$2,387', color: '#ff5f7a' },
+  { label: 'Liquid Asset', value: '37%', amount: '$18,600', color: '#4dd0e1' },
 ];
 
 export const topStocks = [
@@ -86,7 +87,7 @@ export const launchpadProjects = [
 ];
 
 export const leveragePositions = [
-  { pair: 'BTC/USDT', side: 'Long', leverage: '5x', entry: 62868.44, liquidation: 54190, pnl: '+$420.18' },
-  { pair: 'ETH/USDT', side: 'Short', leverage: '3x', entry: 1752.14, liquidation: 1938, pnl: '+$118.92' },
-  { pair: 'SOL/USDT', side: 'Long', leverage: '8x', entry: 77.98, liquidation: 68.16, pnl: '-$63.20' },
+  { pair: 'BTC/USDT', side: 'Long', leverage: '5x', entry: 67500.00, liquidation: 54190, pnl: '+$420.18' },
+  { pair: 'ETH/USDT', side: 'Short', leverage: '3x', entry: 3300.00, liquidation: 1938, pnl: '+$118.92' },
+  { pair: 'SOL/USDT', side: 'Long', leverage: '8x', entry: 165.40, liquidation: 68.16, pnl: '-$63.20' },
 ];

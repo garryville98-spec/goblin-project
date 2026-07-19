@@ -77,7 +77,7 @@ export function usePortfolio(userId) {
         ];
 
         const allocation = [
-          { label: 'Available cash', value: pct(available, portfolioTotal), amount: fmt(available), color: '#59ff9b' },
+          { label: 'Available cash', value: '0%', amount: fmt(0), color: '#59ff9b' },
           { label: 'Fixed deposits', value: pct(depositTotal, portfolioTotal), amount: fmt(depositTotal), color: '#ffd166' },
           { label: 'Stakepools', value: pct(stakeTotal, portfolioTotal), amount: fmt(stakeTotal), color: '#a78bfa' },
           { label: 'Launchpad reserve', value: pct(allocationTotal, portfolioTotal), amount: fmt(allocationTotal), color: '#ff5f7a' },
