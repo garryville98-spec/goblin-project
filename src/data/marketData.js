@@ -1,6 +1,6 @@
 export const cryptoPrices = [
   { symbol: 'BTC', name: 'Bitcoin', price: 67500.00, change: 1.22, volume: '$42.8B' },
-  { symbol: 'SOL', name: 'Solana', price: 165.40, change: 0.77, volume: '$4.1B' },
+  { symbol: 'SOL', name: 'Solana', price: 75.50, change: 0.77, volume: '$4.1B' },
   { symbol: 'ETH', name: 'Ethereum', price: 3300.00, change: 0.82, volume: '$18.6B' },
   { symbol: 'BNB', name: 'BNB', price: 605.20, change: 1.43, volume: '$1.7B' },
 ];
@@ -89,5 +89,5 @@ export const launchpadProjects = [
 export const leveragePositions = [
   { pair: 'BTC/USDT', side: 'Long', leverage: '5x', entry: 67500.00, liquidation: 54190, pnl: '+$420.18' },
   { pair: 'ETH/USDT', side: 'Short', leverage: '3x', entry: 3300.00, liquidation: 1938, pnl: '+$118.92' },
-  { pair: 'SOL/USDT', side: 'Long', leverage: '8x', entry: 165.40, liquidation: 68.16, pnl: '-$63.20' },
+  { pair: 'SOL/USDT', side: 'Long', leverage: '8x', entry: 75.50, liquidation: 68.16, pnl: '-$63.20' },
 ];
