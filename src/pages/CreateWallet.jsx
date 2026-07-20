@@ -17,7 +17,7 @@ function CreateWallet() {
           <SectionHeader
             eyebrow="Secure Wallet"
             title="Create Your Investment Wallet"
-            description="Generate a secure, non-custodial Solana wallet to manage your investment assets."
+            description="Generate a secure, non-custodial wallet to manage your investment assets."
           />
         </div>
 
@@ -41,8 +41,8 @@ function CreateWallet() {
               </svg>
             </div>
             <div className="feature-content">
-              <strong>Solana Native</strong>
-              <p>Built on Solana for fast, low-cost transactions and DeFi integration.</p>
+              <strong>DeFi Wallet</strong>
+              <p>Built for fast, low-cost transactions and DeFi integration.</p>
             </div>
           </div>
           <div className="wallet-feature">
@@ -61,22 +61,6 @@ function CreateWallet() {
         </div>
 
         <div className="create-wallet-cta">
-          <div className="wallet-disabled-notice">
-            <div className="security-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <line x1="12" y1="8" x2="12" y2="12" />
-                <line x1="12" y1="16" x2="12.01" y2="16" />
-              </svg>
-            </div>
-            <div className="security-content">
-              <strong>Automatic wallet generation is disabled</strong>
-              <p>
-                Wallet creation is handled externally. No wallet address is generated automatically. Please use your
-                own wallet or contact support to provision one before funding your Cash Balance.
-              </p>
-            </div>
-          </div>
           <button
             type="button"
             className="primary-button full-width"
