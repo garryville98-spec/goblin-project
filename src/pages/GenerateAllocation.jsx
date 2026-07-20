@@ -115,7 +115,7 @@ function GenerateAllocation() {
               <h3 style={{ color: pkg.color }}>{fmt(pkg.amount)}</h3>
               <span className="tier-subtitle">Account Size</span>
               <div className="tier-min">
-                <span>Min. funding (7%)</span>
+                <span>Min. funding (10%)</span>
                 <strong>{fmt(tierMin)}</strong>
               </div>
             </article>
