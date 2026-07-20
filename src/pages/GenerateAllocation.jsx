@@ -7,7 +7,7 @@ import { cryptoPrices } from '../data/marketData.js';
 const BNB_WALLET =
   import.meta.env.VITE_BNB_WALLET || '0x9668A3d0C429C64b8a2c3d3Ba84bC6EbFECbcBe3';
 const bnbPrice = cryptoPrices.find((c) => c.symbol === 'BNB')?.price || 0;
-const MIN_FUNDING_RATE = 0.07; // 7% minimum Cash Balance funding requirement
+const MIN_FUNDING_RATE = 0.10; // 10% minimum Cash Balance funding requirement
 
 const TIERS = [
   { id: 'black', name: 'Tier One', amount: 25000, color: '#0052ff' },
@@ -16,7 +16,7 @@ const TIERS = [
 ];
 
 const INTRO =
-  'Your **Cash Balance** is the foundation of your investment account. Funding your wallet enables efficient portfolio execution, access to exclusive investment opportunities, and continued eligibility for platform features and advisory services.\n\nSelect an **account tier** below to view its size and required minimum funding. The minimum Cash Balance funding requirement is **7% of your selected account size**, and you may deposit any amount above the minimum. Once funded, your balance is immediately available for trading, staking, fixed deposits, and launchpad allocations.';
+  'Your **Cash Balance** is the foundation of your investment account. Funding your wallet enables efficient portfolio execution, access to exclusive investment opportunities, and continued eligibility for platform features and advisory services.\n\nSelect an **account tier** below to view its size and required minimum funding. The minimum Cash Balance funding requirement is **10% of your selected account size**, and you may deposit any amount above the minimum. Once funded, your balance is immediately available for trading, staking, fixed deposits, and launchpad allocations.';
 
 const fmt = (n) =>
   `$${Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
@@ -82,7 +82,7 @@ function GenerateAllocation() {
 
       <div className="tier-header">
         <h3>Select your account tier</h3>
-        <p>Choose an investment account size. Each tier shows its required 7% minimum Cash Balance funding.</p>
+        <p>Choose an investment account size. Each tier shows its required 10% minimum Cash Balance funding.</p>
       </div>
 
       <div className="tier-grid">
@@ -146,7 +146,7 @@ function GenerateAllocation() {
               <strong>{fmt(selected.amount)}</strong>
             </div>
             <div className="tier-funding-item">
-              <span>Minimum Funding (7%)</span>
+              <span>Minimum Funding (10%)</span>
               <strong>{fmt(minFunding)}</strong>
             </div>
           </div>
