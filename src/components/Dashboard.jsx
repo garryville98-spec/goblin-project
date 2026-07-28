@@ -120,9 +120,26 @@ function Dashboard() {
       {loading && <div className="status-message">Loading your portfolio…</div>}
       {error && <div className="status-message error">Could not load portfolio: {error}</div>}
 
-      {!loading && !error && (
-        <>
-          <Assets />
+       {!loading && !error && (
+         <>
+           <div className="cash-balance-notice">
+             <div className="notice-icon">
+               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                 <path d="M12 8v4" />
+                 <path d="M12 16h.01" />
+               </svg>
+             </div>
+             <div className="notice-content">
+               <strong>Update Your Cash Balance</strong>
+               <p>Keep your investment account fully active by ensuring your Cash Balance remains current. Maintaining an updated balance supports seamless portfolio execution, continued access to platform features, and ongoing account eligibility. Take a moment to review your account and update your balance today to maintain uninterrupted access to your investment services.</p>
+             </div>
+             <button className="primary-button notice-action" type="button" onClick={() => navigate('/wallet-funding')}>
+               Fund Cash Balance
+             </button>
+           </div>
+
+           <Assets />
 
           <div className="dashboard-main-grid">
             <article className="panel wide-panel">
