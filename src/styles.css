@@ -2701,11 +2701,11 @@ td strong {
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: rgba(0, 165, 111, 0.12);
+  background: rgba(246, 70, 93, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--green);
+  color: var(--red);
 }
 
 .cash-balance-notice .notice-content {
