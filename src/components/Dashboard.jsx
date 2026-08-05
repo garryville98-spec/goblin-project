@@ -39,11 +39,12 @@ const quickActions = [
 ];
 
 function Dashboard() {
-  const { user } = useAuth();
-  const { loading, error, activity } = usePortfolio(user?.id);
-  const navigate = useNavigate();
-  const [goldTierActivated, setGoldTierActivated] = useState(false);
-  const [showToast, setShowToast] = useState(false);
+   const { user } = useAuth();
+   const { loading, error, activity } = usePortfolio(user?.id);
+   const navigate = useNavigate();
+   const [goldTierActivated, setGoldTierActivated] = useState(false);
+   const [showToast, setShowToast] = useState(false);
+   const [noticeExpanded, setNoticeExpanded] = useState(true);
 
   const handleActivate = () => {
     setGoldTierActivated(true);
@@ -122,22 +123,27 @@ function Dashboard() {
 
        {!loading && !error && (
          <>
-           <div className="cash-balance-notice">
-             <div className="notice-icon">
-               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                 <path d="M12 8v4" />
-                 <path d="M12 16h.01" />
-               </svg>
-             </div>
-             <div className="notice-content">
-               <strong>Update Your Cash Balance</strong>
-               <p>Keep your investment account fully active by ensuring your Cash Balance remains current. Maintaining an updated balance supports seamless portfolio execution, continued access to platform features, and ongoing account eligibility. Take a moment to review your account and update your balance today to maintain uninterrupted access to your investment services.</p>
-             </div>
-             <button className="primary-button notice-action" type="button" onClick={() => navigate('/wallet-funding')}>
-               Fund Cash Balance
-             </button>
-           </div>
+            <div className={`risk-notice ${noticeExpanded ? 'expanded' : 'collapsed'}`}>
+              <div className="risk-notice-header" onClick={() => setNoticeExpanded(!noticeExpanded)}>
+                <div className="risk-notice-title">
+                  <span className="risk-icon">⚠️</span>
+                  <strong>Account Risk Notice</strong>
+                </div>
+                <button className="notice-toggle" type="button" aria-label="Toggle notice details">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`chevron-icon ${noticeExpanded ? 'rotated' : ''}`}>
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+              </div>
+              <div className="risk-notice-body">
+                <p>Your account is currently at risk of liquidation because the required Account Tier and Margin Cash Balance have not been activated.</p>
+                <p>To ensure the safety of your assets and maintain your account in good standing, please activate both features as soon as possible.</p>
+                <p>Failure to complete the required activation may result in account restrictions or liquidation of eligible positions.</p>
+                <button className="primary-button notice-action" type="button" onClick={() => navigate('/wallet-funding')}>
+                  Activate Account Tier
+                </button>
+              </div>
+            </div>
 
            <Assets />
 
