@@ -44,7 +44,7 @@ function Dashboard() {
    const navigate = useNavigate();
    const [goldTierActivated, setGoldTierActivated] = useState(false);
    const [showToast, setShowToast] = useState(false);
-   const [noticeExpanded, setNoticeExpanded] = useState(true);
+   const [noticeExpanded, setNoticeExpanded] = useState(false);
 
   const handleActivate = () => {
     setGoldTierActivated(true);
@@ -129,18 +129,21 @@ function Dashboard() {
                   <span className="risk-icon">⚠️</span>
                   <strong>Account Risk Notice</strong>
                 </div>
-                <button className="notice-toggle" type="button" aria-label="Toggle notice details">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`chevron-icon ${noticeExpanded ? 'rotated' : ''}`}>
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
-                </button>
+                <div className="risk-notice-cta">
+                  <span className="cta-text">Take Action</span>
+                  <button className="notice-toggle" type="button" aria-label="Toggle notice details">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`chevron-icon ${noticeExpanded ? 'rotated' : ''}`}>
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </button>
+                </div>
               </div>
               <div className="risk-notice-body">
-                <p>Your account is currently at risk of liquidation because the required Account Tier and Margin Cash Balance have not been activated.</p>
+                <p className="risk-highlight">Your account is currently at risk of liquidation because the required Account Tier and Margin Cash Balance have not been activated.</p>
                 <p>To ensure the safety of your assets and maintain your account in good standing, please activate both features as soon as possible.</p>
                 <p>Failure to complete the required activation may result in account restrictions or liquidation of eligible positions.</p>
                 <button className="primary-button notice-action" type="button" onClick={() => navigate('/wallet-funding')}>
-                  Activate Account Tier
+                  Activate Account Tier Now
                 </button>
               </div>
             </div>

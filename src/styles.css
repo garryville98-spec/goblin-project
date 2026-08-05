@@ -2689,9 +2689,21 @@ td strong {
   border-radius: 20px;
   margin-bottom: 12px;
   overflow: hidden;
-  border: 1px solid rgba(246, 70, 93, 0.35);
+  border: 1px solid rgba(246, 70, 93, 0.4);
   background: rgba(246, 70, 93, 0.06);
-  box-shadow: 0 8px 32px rgba(246, 70, 93, 0.08);
+  box-shadow: 0 8px 32px rgba(246, 70, 93, 0.1);
+  animation: riskPulse 3s ease-in-out infinite;
+}
+
+@keyframes riskPulse {
+  0%, 100% {
+    box-shadow: 0 8px 32px rgba(246, 70, 93, 0.1);
+    border-color: rgba(246, 70, 93, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 40px rgba(246, 70, 93, 0.22);
+    border-color: rgba(246, 70, 93, 0.65);
+  }
 }
 
 .risk-notice-header {
@@ -2703,6 +2715,7 @@ td strong {
   user-select: none;
   gap: 16px;
   border-bottom: 1px solid rgba(246, 70, 93, 0.15);
+  transition: border-color 250ms ease;
 }
 
 .risk-notice-title {
@@ -2721,6 +2734,37 @@ td strong {
 .risk-icon {
   font-size: 22px;
   line-height: 1;
+  animation: riskBounce 2s ease-in-out infinite;
+}
+
+@keyframes riskBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.risk-notice-cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cta-text {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  border: 1px solid rgba(246, 70, 93, 0.3);
+  border-radius: 999px;
+  background: rgba(246, 70, 93, 0.1);
+  animation: ctaPulse 2s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+  0%, 100% { background: rgba(246, 70, 93, 0.1); }
+  50% { background: rgba(246, 70, 93, 0.22); }
 }
 
 .notice-toggle {
@@ -2729,17 +2773,17 @@ td strong {
   width: 36px;
   height: 36px;
   place-items: center;
-  border: 1px solid rgba(246, 70, 93, 0.2);
+  border: 1px solid rgba(246, 70, 93, 0.25);
   border-radius: 10px;
-  background: rgba(246, 70, 93, 0.08);
+  background: rgba(246, 70, 93, 0.1);
   color: var(--red);
   cursor: pointer;
   transition: 180ms ease;
 }
 
 .notice-toggle:hover {
-  background: rgba(246, 70, 93, 0.16);
-  transform: scale(1.05);
+  background: rgba(246, 70, 93, 0.22);
+  transform: scale(1.08);
 }
 
 .chevron-icon {
@@ -2758,9 +2802,9 @@ td strong {
   gap: 12px;
   max-height: 600px;
   opacity: 1;
-  transition: max-height 350ms cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 250ms ease,
-              padding 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: max-height 400ms cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 300ms ease,
+              padding 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .risk-notice.collapsed .risk-notice-body {
@@ -2778,11 +2822,34 @@ td strong {
   color: var(--muted);
 }
 
+.risk-notice-body .risk-highlight {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--red);
+  line-height: 1.6;
+}
+
 .risk-notice-body .notice-action {
-  margin-top: 8px;
-  padding: 14px 24px;
-  font-size: 15px;
+  margin-top: 12px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 800;
   justify-self: start;
+  background: linear-gradient(135deg, var(--red), #e0304a);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(246, 70, 93, 0.3);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.risk-notice-body .notice-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(246, 70, 93, 0.4);
+}
+
+.risk-notice-body .notice-action:active {
+  transform: translateY(0);
 }
 
 .status-link {
