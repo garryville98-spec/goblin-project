@@ -2685,55 +2685,64 @@ td strong {
   border: 1px solid rgba(59, 130, 246, 0.25);
 }
 
-.risk-notice {
-  border-radius: 20px;
-  margin-bottom: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(246, 70, 93, 0.4);
-  background: rgba(246, 70, 93, 0.06);
-  box-shadow: 0 8px 32px rgba(246, 70, 93, 0.1);
-  animation: riskPulse 3s ease-in-out infinite;
+.risk-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: rgba(5, 5, 5, 0.7);
+  backdrop-filter: blur(8px);
+  animation: fadeIn 200ms ease;
 }
 
-@keyframes riskPulse {
-  0%, 100% {
-    box-shadow: 0 8px 32px rgba(246, 70, 93, 0.1);
-    border-color: rgba(246, 70, 93, 0.4);
-  }
-  50% {
-    box-shadow: 0 8px 40px rgba(246, 70, 93, 0.22);
-    border-color: rgba(246, 70, 93, 0.65);
-  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.risk-notice-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 22px 24px;
+.risk-popup {
+  position: relative;
+  width: min(560px, 90vw);
+  padding: 40px 36px 36px;
+  border-radius: 24px;
+  background: var(--panel-strong);
+  border: 1px solid rgba(246, 70, 93, 0.35);
+  box-shadow: 0 24px 80px rgba(246, 70, 93, 0.2);
+  animation: popIn 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.risk-popup-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
   cursor: pointer;
-  user-select: none;
-  gap: 16px;
-  border-bottom: 1px solid rgba(246, 70, 93, 0.15);
-  transition: border-color 250ms ease;
+  transition: 180ms ease;
 }
 
-.risk-notice-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
+.risk-popup-close:hover {
+  background: rgba(246, 70, 93, 0.12);
+  color: var(--red);
+  border-color: rgba(246, 70, 93, 0.3);
 }
 
-.risk-notice-title strong {
-  font-size: 18px;
-  color: var(--text);
-  letter-spacing: -0.01em;
-}
-
-.risk-icon {
-  font-size: 22px;
-  line-height: 1;
+.risk-popup-icon {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 12px;
   animation: riskBounce 2s ease-in-out infinite;
 }
 
@@ -2742,113 +2751,49 @@ td strong {
   50% { transform: scale(1.15); }
 }
 
-.risk-notice-cta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
+.risk-popup-title {
+  margin: 0 0 16px;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--text);
+  text-align: center;
+  letter-spacing: -0.02em;
 }
 
-.cta-text {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--red);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 6px 12px;
-  border: 1px solid rgba(246, 70, 93, 0.3);
-  border-radius: 999px;
-  background: rgba(246, 70, 93, 0.1);
-  animation: ctaPulse 2s ease-in-out infinite;
-}
-
-@keyframes ctaPulse {
-  0%, 100% { background: rgba(246, 70, 93, 0.1); }
-  50% { background: rgba(246, 70, 93, 0.22); }
-}
-
-.notice-toggle {
-  flex-shrink: 0;
-  display: grid;
-  width: 36px;
-  height: 36px;
-  place-items: center;
-  border: 1px solid rgba(246, 70, 93, 0.25);
-  border-radius: 10px;
-  background: rgba(246, 70, 93, 0.1);
-  color: var(--red);
-  cursor: pointer;
-  transition: 180ms ease;
-}
-
-.notice-toggle:hover {
-  background: rgba(246, 70, 93, 0.22);
-  transform: scale(1.08);
-}
-
-.chevron-icon {
-  width: 18px;
-  height: 18px;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.chevron-icon.rotated {
-  transform: rotate(180deg);
-}
-
-.risk-notice-body {
-  padding: 0 24px 24px;
-  display: grid;
-  gap: 12px;
-  max-height: 600px;
-  opacity: 1;
-  transition: max-height 400ms cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 300ms ease,
-              padding 400ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.risk-notice.collapsed .risk-notice-body {
-  max-height: 0;
-  opacity: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  overflow: hidden;
-}
-
-.risk-notice-body p {
-  margin: 0;
+.risk-popup-text {
+  margin: 0 0 10px;
   font-size: 15px;
   line-height: 1.7;
   color: var(--muted);
+  text-align: center;
 }
 
-.risk-notice-body .risk-highlight {
-  font-size: 16px;
+.risk-popup-warning {
   font-weight: 700;
   color: var(--red);
-  line-height: 1.6;
 }
 
-.risk-notice-body .notice-action {
-  margin-top: 12px;
-  padding: 16px 32px;
+.risk-popup-cta {
+  display: block;
+  margin: 20px auto 0;
+  padding: 16px 36px;
   font-size: 16px;
   font-weight: 800;
-  justify-self: start;
-  background: linear-gradient(135deg, var(--red), #e0304a);
   color: #fff;
+  background: linear-gradient(135deg, var(--red), #e0304a);
   border: none;
   border-radius: 999px;
-  box-shadow: 0 8px 24px rgba(246, 70, 93, 0.3);
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(246, 70, 93, 0.35);
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.risk-notice-body .notice-action:hover {
+.risk-popup-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(246, 70, 93, 0.4);
+  box-shadow: 0 12px 32px rgba(246, 70, 93, 0.45);
 }
 
-.risk-notice-body .notice-action:active {
+.risk-popup-cta:active {
   transform: translateY(0);
 }
 
