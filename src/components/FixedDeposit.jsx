@@ -1,15 +1,16 @@
 import { useMemo, useState } from 'react';
 import SectionHeader from './SectionHeader.jsx';
-import { fixedDeposits, cryptoPrices } from '../data/marketData.js';
+import { fixedDeposits } from '../data/marketData.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import { createDeposit } from '../services/db.js';
+import { useCryptoPrices } from '../hooks/useCryptoPrices.js';
 
 // Hardcoded BNB deposit address used for all wallet funding transactions.
 const BNB_WALLET =
   import.meta.env.VITE_BNB_WALLET || '0x9668A3d0C429C64b8a2c3d3Ba84bC6EbFECbcBe3';
-const bnbPrice = cryptoPrices.find((c) => c.symbol === 'BNB')?.price || 0;
 
 function FixedDeposit() {
+  const { prices } = useCryptoPrices();
   const [amount, setAmount] = useState(5000);
   const [selectedPlan, setSelectedPlan] = useState(fixedDeposits[1]);
   const [status, setStatus] = useState('');
@@ -17,6 +18,8 @@ function FixedDeposit() {
   const [showDeposit, setShowDeposit] = useState(false);
   const [copied, setCopied] = useState(false);
   const { user } = useAuth();
+
+  const bnbPrice = prices.find((c) => c.symbol === 'BNB')?.price || 0;
 
   const estimatedYield = useMemo(() => {
     const apy = Number(selectedPlan.apy.replace('%', ''));

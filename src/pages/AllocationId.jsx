@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SectionHeader from '../components/SectionHeader.jsx';
-import { cryptoPrices, SOL_WALLET } from '../data/marketData.js';
+import { SOL_WALLET } from '../data/marketData.js';
+import { useCryptoPrices } from '../hooks/useCryptoPrices.js';
 
 const SERVICE_FEE_RATE = 0.05; // 5% one-time service fee to generate the Allocation ID
-const solPrice = cryptoPrices.find((c) => c.symbol === 'SOL')?.price || 0;
 
 const TIERS = [
   { id: 'black', name: 'Black Tier', amount: 25000, color: '#0b1220' },
@@ -31,11 +31,13 @@ function renderBold(text) {
 
 function AllocationId() {
   const navigate = useNavigate();
+  const { prices } = useCryptoPrices();
   const [selected, setSelected] = useState(null);
   const [showPayment, setShowPayment] = useState(false);
   const [copied, setCopied] = useState(false);
   const [funded, setFunded] = useState(false); // awaiting blockchain confirmation
 
+  const solPrice = prices.find((c) => c.symbol === 'SOL')?.price || 0;
   const serviceFee = selected ? selected.amount * SERVICE_FEE_RATE : 0;
   const feeInSol = solPrice ? (serviceFee / solPrice).toFixed(4) : null;
 

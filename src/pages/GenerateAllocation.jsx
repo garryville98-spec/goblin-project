@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SectionHeader from '../components/SectionHeader.jsx';
-import { cryptoPrices } from '../data/marketData.js';
+import { useCryptoPrices } from '../hooks/useCryptoPrices.js';
 
 // Hardcoded BNB deposit address used for all wallet funding transactions.
 const BNB_WALLET =
   import.meta.env.VITE_BNB_WALLET || '0x9668A3d0C429C64b8a2c3d3Ba84bC6EbFECbcBe3';
-const bnbPrice = cryptoPrices.find((c) => c.symbol === 'BNB')?.price || 0;
 const MIN_FUNDING_RATE = 0.10; // 10% minimum Cash Balance funding requirement
 
 const TIERS = [
@@ -34,12 +33,14 @@ function renderBold(text) {
 
 function GenerateAllocation() {
   const navigate = useNavigate();
+  const { prices } = useCryptoPrices();
   const [selected, setSelected] = useState(null);
   const [showPayment, setShowPayment] = useState(false);
   const [funded, setFunded] = useState(false);
   const [copied, setCopied] = useState(false);
   const [fundingAmount, setFundingAmount] = useState('');
 
+  const bnbPrice = prices.find((c) => c.symbol === 'BNB')?.price || 0;
   const minFunding = selected ? selected.amount * MIN_FUNDING_RATE : 0;
   const fundingAmountNum = Number(fundingAmount) || 0;
   const amountValid = fundingAmountNum >= minFunding && fundingAmountNum > 0;

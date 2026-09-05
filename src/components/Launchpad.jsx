@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import SectionHeader from './SectionHeader.jsx';
-import { launchpadProjects, cryptoPrices, SOL_WALLET } from '../data/marketData.js';
+import { launchpadProjects, SOL_WALLET } from '../data/marketData.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import { createLaunchpadAllocation } from '../services/db.js';
-
-const solPrice = cryptoPrices.find((c) => c.symbol === 'SOL')?.price || 0;
+import { useCryptoPrices } from '../hooks/useCryptoPrices.js';
 
 function allocationToUsd(allocation) {
   return Number(String(allocation).replace('$', '').replace(',', '')) || 0;
@@ -12,12 +11,15 @@ function allocationToUsd(allocation) {
 
 function Launchpad() {
   const { user } = useAuth();
+  const { prices } = useCryptoPrices();
   const [detailsProject, setDetailsProject] = useState(null);
   const [depositProject, setDepositProject] = useState(null);
   const [copied, setCopied] = useState(false);
   const [allocating, setAllocating] = useState(false);
   const [generated, setGenerated] = useState(null); // { id, project_name, allocation_amount }
   const [allocError, setAllocError] = useState('');
+
+  const solPrice = prices.find((c) => c.symbol === 'SOL')?.price || 0;
 
   const handleJoinSale = (project) => {
     setDepositProject(project);
