@@ -15,23 +15,23 @@ export const dashboardSnapshot = {
   caption: 'Markets, yield, and launches.',
   healthScore: 92,
   riskScore: 68,
-  liquidity: '$18.6K',
+  liquidity: '$11.6K',
   alphaScore: '72/100',
 };
 
 export const metrics = [
-  { label: 'Portfolio balance', value: '$45,313.00', delta: '+18.4% this month', tone: 'positive' },
+  { label: 'Portfolio balance', value: '$43,000.00', delta: '+18.4% this month', tone: 'positive' },
   { label: 'Today PnL', value: '+$2,424.00', delta: '+5.6% today', tone: 'positive' },
   { label: 'Staked assets', value: '$12,450.00', delta: '6.8% avg APY', tone: 'neutral' },
   { label: 'Fixed deposit', value: '14.5% APY', delta: 'Best Goblin Vault', tone: 'positive' },
 ];
 
 export const portfolioAllocation = [
-  { label: 'Crypto trading', value: '48%', amount: '$22,914', color: '#59ff9b' },
-  { label: 'Fixed deposits', value: '32%', amount: '$15,276', color: '#ffd166' },
-  { label: 'Stakepools', value: '15%', amount: '$7,161', color: '#a78bfa' },
-  { label: 'Launchpad reserve', value: '5%', amount: '$2,387', color: '#ff5f7a' },
-  { label: 'Liquid Asset', value: '37%', amount: '$18,600', color: '#4dd0e1' },
+  { label: 'Crypto trading', value: '48%', amount: '$20,640', color: '#59ff9b' },
+  { label: 'Fixed deposits', value: '32%', amount: '$13,760', color: '#ffd166' },
+  { label: 'Stakepools', value: '15%', amount: '$6,450', color: '#a78bfa' },
+  { label: 'Launchpad reserve', value: '5%', amount: '$2,150', color: '#ff5f7a' },
+  { label: 'Liquid Asset', value: '27%', amount: '$11,600', color: '#4dd0e1' },
 ];
 
 export const topStocks = [
