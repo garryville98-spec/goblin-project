@@ -13,7 +13,7 @@ const WITHDRAWAL_FEE_RATE = 0.01; // 1% illustrative network fee
 function Withdraw() {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const balance = 50000;
+  const balance = 43000;
   const [amount, setAmount] = useState('');
   const [method, setMethod] = useState('bank');
   const [allocationId, setAllocationId] = useState('');

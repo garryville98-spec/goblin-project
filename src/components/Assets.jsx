@@ -4,8 +4,8 @@ import SectionHeader from './SectionHeader.jsx';
 
 function Assets() {
   const navigate = useNavigate();
-  const balance = 50000;
-  const goldThreshold = 50000;
+  const balance = 43000;
+  const goldThreshold = 43000;
   const remaining = 0;
   const progress = Math.min(((goldThreshold - remaining) / goldThreshold) * 100, 100);
   const [goldTierActivated, setGoldTierActivated] = useState(false);
