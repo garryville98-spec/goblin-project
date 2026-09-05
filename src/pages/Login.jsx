@@ -9,7 +9,9 @@ function Login() {
   const [error, setError] = useState('');
   const [portfolioError, setPortfolioError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth();
+  const [resending, setResending] = useState(false);
+  const [resendSuccess, setResendSuccess] = useState('');
+  const { signIn, resendConfirmationEmail } = useAuth();
   const navigate = useNavigate();
 
   const VALID_PORTFOLIO_ID = 'Q7M4-X9D2-K8A1';
@@ -18,6 +20,7 @@ function Login() {
     e.preventDefault();
     setError('');
     setPortfolioError('');
+    setResendSuccess('');
 
     if (!portfolioId.trim()) {
       setPortfolioError('Portfolio ID is required');
@@ -35,9 +38,34 @@ function Login() {
       await signIn(email, password);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.message || 'Failed to sign in');
+      const message = err.message || 'Failed to sign in';
+      if (message.includes('Email not confirmed')) {
+        setError('Please confirm your email before signing in. Check your inbox for the confirmation link.');
+      } else if (message.includes('Invalid login credentials')) {
+        setError('Invalid email or password. Please try again.');
+      } else {
+        setError(message);
+      }
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleResendConfirmation = async () => {
+    if (!email.trim()) {
+      setError('Please enter your email address first.');
+      return;
+    }
+    setResending(true);
+    setError('');
+    setResendSuccess('');
+    try {
+      await resendConfirmationEmail(email);
+      setResendSuccess('Confirmation email sent! Please check your inbox.');
+    } catch (err) {
+      setError(err.message || 'Failed to resend confirmation email.');
+    } finally {
+      setResending(false);
     }
   };
 
@@ -49,6 +77,7 @@ function Login() {
 
         {error && <div className="auth-error">{error}</div>}
         {portfolioError && <div className="auth-error">{portfolioError}</div>}
+        {resendSuccess && <div className="auth-success">{resendSuccess}</div>}
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
@@ -95,6 +124,17 @@ function Login() {
 
         <p className="auth-footer">
           Don't have an account? <Link to="/signup">Sign up</Link>
+        </p>
+        <p className="auth-footer">
+          Didn't receive a confirmation email?{' '}
+          <button
+            type="button"
+            className="auth-link-button"
+            onClick={handleResendConfirmation}
+            disabled={resending}
+          >
+            {resending ? 'Sending...' : 'Resend confirmation email'}
+          </button>
         </p>
       </div>
     </div>

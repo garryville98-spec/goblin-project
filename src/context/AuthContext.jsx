@@ -75,6 +75,14 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
+  const resendConfirmationEmail = async (email) => {
+    const { error } = await supabase.auth.resend({
+      type: 'signup',
+      email,
+    });
+    if (error) throw error;
+  };
+
   const isAdmin = user?.user_metadata?.role === 'admin';
 
   const value = {
@@ -84,6 +92,7 @@ export function AuthProvider({ children }) {
     signUp,
     signIn,
     signOut,
+    resendConfirmationEmail,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

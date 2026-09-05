@@ -10,13 +10,16 @@ function Signup() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signUp } = useAuth();
+  const [resending, setResending] = useState(false);
+  const [resendSuccess, setResendSuccess] = useState('');
+  const { signUp, resendConfirmationEmail } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
+    setResendSuccess('');
 
     if (password !== confirmPassword) {
       setError('Passwords do not match');
@@ -46,6 +49,24 @@ function Signup() {
     }
   };
 
+  const handleResendConfirmation = async () => {
+    if (!email.trim()) {
+      setError('Please enter your email address first.');
+      return;
+    }
+    setResending(true);
+    setError('');
+    setResendSuccess('');
+    try {
+      await resendConfirmationEmail(email);
+      setResendSuccess('Confirmation email sent! Please check your inbox.');
+    } catch (err) {
+      setError(err.message || 'Failed to resend confirmation email.');
+    } finally {
+      setResending(false);
+    }
+  };
+
   return (
     <div className="auth-page">
       <div className="auth-card">
@@ -54,6 +75,7 @@ function Signup() {
 
         {error && <div className="auth-error">{error}</div>}
         {success && <div className="auth-success">{success}</div>}
+        {resendSuccess && <div className="auth-success">{resendSuccess}</div>}
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
@@ -112,6 +134,19 @@ function Signup() {
         <p className="auth-footer">
           Already have an account? <Link to="/login">Sign in</Link>
         </p>
+        {success && success.includes('check your email') && (
+          <p className="auth-footer">
+            Didn't receive the email?{' '}
+            <button
+              type="button"
+              className="auth-link-button"
+              onClick={handleResendConfirmation}
+              disabled={resending}
+            >
+              {resending ? 'Sending...' : 'Resend confirmation email'}
+            </button>
+          </p>
+        )}
       </div>
     </div>
   );
