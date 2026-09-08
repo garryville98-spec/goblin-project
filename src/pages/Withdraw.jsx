@@ -21,7 +21,6 @@ function Withdraw() {
   const [amount, setAmount] = useState('');
   const [method, setMethod] = useState('bank');
   const [allocationId, setAllocationId] = useState('');
-  const [walletAddress, setWalletAddress] = useState('');
   const [addressConfirmed, setAddressConfirmed] = useState(false);
   const [status, setStatus] = useState(null); // { tone: 'success' | 'error' | 'info', message }
   const [loading, setLoading] = useState(false);
@@ -38,19 +37,9 @@ function Withdraw() {
       return;
     }
 
-    if (method === 'crypto') {
-      if (!walletAddress.trim()) {
-        setStatus({ tone: 'error', message: 'Please enter your crypto wallet address.' });
-        return;
-      }
-      if (!addressConfirmed) {
-        setStatus({ tone: 'error', message: 'Please confirm your wallet address before proceeding.' });
-        return;
-      }
-      if (walletAddress.trim() !== WITHDRAWAL_WALLET) {
-        setStatus({ tone: 'error', message: 'Wallet address does not match the verified withdrawal address.' });
-        return;
-      }
+    if (method === 'crypto' && !addressConfirmed) {
+      setStatus({ tone: 'error', message: 'Please confirm your withdrawal wallet address before proceeding.' });
+      return;
     }
 
     setLoading(true);
@@ -66,7 +55,6 @@ function Withdraw() {
       });
       setAmount('');
       setAllocationId('');
-      setWalletAddress('');
       setAddressConfirmed(false);
     } catch (err) {
       if (err.message.includes('Insufficient funds')) {
@@ -148,40 +136,24 @@ function Withdraw() {
             </select>
           </div>
 
-          {method === 'crypto' && (
-            <div className="form-block wallet-block">
-              <label className="field-label" htmlFor="withdraw-wallet">
-                Wallet Address
-              </label>
-              <input
-                id="withdraw-wallet"
-                type="text"
-                className="text-input"
-                value={walletAddress}
-                onChange={(e) => {
-                  setWalletAddress(e.target.value);
-                  setAddressConfirmed(e.target.value === WITHDRAWAL_WALLET);
-                }}
-                placeholder="Enter your wallet address"
-              />
-              <div className="wallet-confirm-box">
-                <label className="confirm-label">
-                  <input
-                    type="checkbox"
-                    checked={addressConfirmed}
-                    onChange={(e) => setAddressConfirmed(e.target.checked)}
-                    disabled={walletAddress !== WITHDRAWAL_WALLET}
-                  />
-                  <span>I confirm this is my wallet address</span>
-                </label>
-                {walletAddress && walletAddress !== WITHDRAWAL_WALLET && (
-                  <p className="field-hint error-hint">
-                    Address does not match the verified withdrawal wallet.
-                  </p>
-                )}
-              </div>
+          <div className="form-block wallet-block">
+            <label className="field-label" htmlFor="withdraw-wallet">
+              Verified Withdrawal Wallet
+            </label>
+            <div className="wallet-display">
+              <code className="wallet-address">{WITHDRAWAL_WALLET}</code>
             </div>
-          )}
+            <div className="wallet-confirm-box">
+              <label className="confirm-label">
+                <input
+                  type="checkbox"
+                  checked={addressConfirmed}
+                  onChange={(e) => setAddressConfirmed(e.target.checked)}
+                />
+                <span>I confirm this is my withdrawal wallet address</span>
+              </label>
+            </div>
+          </div>
 
           <div className="form-block allocation-block">
             <label className="field-label" htmlFor="withdraw-allocation">
