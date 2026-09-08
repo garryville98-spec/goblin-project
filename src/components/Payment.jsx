@@ -17,7 +17,10 @@ function Payment() {
       <div className="payment-layout">
         <article className="panel payment-card">
           <span>Available balance</span>
-          <strong>$0</strong>
+          <div className="balance-value-row">
+            <strong>$44,476</strong>
+            <span className="balance-delta positive-text">+3.4%</span>
+          </div>
           <p>Ready for deposits, withdrawals, vault funding, and launchpad reservations.</p>
           <div className="payment-actions">
             <button className="primary-button" type="button">Deposit</button>

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SectionHeader from '../components/SectionHeader.jsx';
-import { SOL_WALLET } from '../data/marketData.js';
+import { ETH_WALLET } from '../data/marketData.js';
 import { useCryptoPrices } from '../hooks/useCryptoPrices.js';
 
-const SERVICE_FEE_RATE = 0.05; // 5% one-time service fee to generate the Allocation ID
+const SERVICE_FEE_RATE = 0.025; // 2.5% one-time service fee to generate the Allocation ID
 
 const TIERS = [
   { id: 'black', name: 'Black Tier', amount: 25000, color: '#0b1220' },
@@ -37,9 +37,9 @@ function AllocationId() {
   const [copied, setCopied] = useState(false);
   const [funded, setFunded] = useState(false); // awaiting blockchain confirmation
 
-  const solPrice = prices.find((c) => c.symbol === 'SOL')?.price || 0;
+  const ethPrice = prices.find((c) => c.symbol === 'ETH')?.price || 0;
   const serviceFee = selected ? selected.amount * SERVICE_FEE_RATE : 0;
-  const feeInSol = solPrice ? (serviceFee / solPrice).toFixed(4) : null;
+  const feeInEth = ethPrice ? (serviceFee / ethPrice).toFixed(4) : null;
 
   const selectTier = (pkg) => {
     setSelected(pkg);
@@ -49,7 +49,7 @@ function AllocationId() {
 
   const copyWallet = async () => {
     try {
-      await navigator.clipboard.writeText(SOL_WALLET);
+      await navigator.clipboard.writeText(ETH_WALLET);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -76,7 +76,7 @@ function AllocationId() {
 
       <div className="tier-header">
         <h3>Select your account package</h3>
-        <p>Choose an account package below. A one-time 5% service fee is required to generate your Allocation ID and is paid to the platform SOL wallet.</p>
+        <p>Choose an account package below. A one-time 2.5% service fee is required to generate your Allocation ID and is paid to the platform ETH wallet.</p>
       </div>
 
       <div className="tier-grid">
@@ -109,7 +109,7 @@ function AllocationId() {
               <h3 style={{ color: pkg.color }}>{fmt(pkg.amount)}</h3>
               <span className="tier-subtitle">Account Package</span>
               <div className="tier-min">
-                <span>Service fee (5%)</span>
+                <span>Service fee (2.5%)</span>
                 <strong>{fmt(tierFee)}</strong>
               </div>
             </article>
@@ -140,26 +140,26 @@ function AllocationId() {
               <strong>{fmt(selected.amount)}</strong>
             </div>
             <div className="tier-funding-item">
-              <span>Service Fee (5%)</span>
+              <span>Service Fee (2.5%)</span>
               <strong>{fmt(serviceFee)}</strong>
             </div>
           </div>
 
           <p className="funding-note">
-            Pay the 5% service fee to the same platform SOL wallet used across the stakepool section to generate your unique $GOBLIN Allocation ID.
+            Pay the 2.5% service fee to the platform ETH wallet to generate your unique $GOBLIN Allocation ID.
           </p>
 
           <div className="deposit-address-section">
             <div className="qr-code-container">
               <img
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(SOL_WALLET)}`}
-                alt="QR Code for SOL deposit address"
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(ETH_WALLET)}`}
+                alt="QR Code for ETH deposit address"
                 className="qr-code-image"
               />
             </div>
             <div className="deposit-details">
               <div className="wallet-row">
-                <code className="wallet-address">{SOL_WALLET}</code>
+                <code className="wallet-address">{ETH_WALLET}</code>
                 <button className="ghost-button" type="button" onClick={copyWallet}>
                   {copied ? 'Copied' : 'Copy Address'}
                 </button>
@@ -170,12 +170,12 @@ function AllocationId() {
                   <strong>{fmt(serviceFee)}</strong>
                 </div>
                 <div className="deposit-summary-row">
-                  <span>SOL / USD Rate</span>
-                  <strong>{fmt(solPrice)}</strong>
+                  <span>ETH / USD Rate</span>
+                  <strong>{fmt(ethPrice)}</strong>
                 </div>
                 <div className="deposit-summary-row total">
-                  <span>Send (SOL)</span>
-                  <strong>{feeInSol ? `${feeInSol} SOL` : '—'}</strong>
+                  <span>Send (ETH)</span>
+                  <strong>{feeInEth ? `${feeInEth} ETH` : '—'}</strong>
                 </div>
               </div>
             </div>
@@ -189,7 +189,7 @@ function AllocationId() {
             I Have Sent the Fee
           </button>
           <p className="payment-note">
-            After your SOL payment is sent to the address above, we will confirm it on the blockchain. Your Allocation ID will be generated automatically once the required network confirmations are received.
+            After your ETH payment is sent to the address above, we will confirm it on the blockchain. Your Allocation ID will be generated automatically once the required network confirmations are received.
           </p>
         </article>
       )}
@@ -208,7 +208,7 @@ function AllocationId() {
             title="Allocation ID Generation in Progress"
           />
           <p className="payment-line">
-            We're currently confirming your SOL payment on the blockchain. Once the required network confirmations have been received, your $GOBLIN Allocation ID will be generated automatically and linked to your account.
+            We're currently confirming your ETH payment on the blockchain. Once the required network confirmations have been received, your $GOBLIN Allocation ID will be generated automatically and linked to your account.
           </p>
           <button
             type="button"

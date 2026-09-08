@@ -4,8 +4,9 @@ import SectionHeader from './SectionHeader.jsx';
 
 function Assets() {
   const navigate = useNavigate();
-  const balance = 43000;
-  const goldThreshold = 43000;
+  const balance = 44476;
+  const balanceDelta = '+3.4%';
+  const goldThreshold = 44476;
   const remaining = 0;
   const progress = Math.min(((goldThreshold - remaining) / goldThreshold) * 100, 100);
   const [goldTierActivated, setGoldTierActivated] = useState(false);
@@ -39,7 +40,10 @@ function Assets() {
       <div className="assets-body">
         <div className="assets-balance-block">
           <div className="assets-balance-label">Total balance</div>
-          <div className="assets-balance-value">${balance.toLocaleString()}</div>
+          <div className="assets-balance-value">
+            ${balance.toLocaleString()}
+            <span className="balance-delta positive-text">{balanceDelta}</span>
+          </div>
         </div>
 
         <div className={`assets-tier-block gold-tier-action ${goldTierActivated ? 'gold-active' : ''}`}>

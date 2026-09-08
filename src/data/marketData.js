@@ -10,6 +10,10 @@ export const cryptoPrices = [
 export const SOL_WALLET =
   import.meta.env.VITE_SOL_WALLET || '3rXXcwzLBGcpDQw7HmWFyJWC5FeDyVCAH4vwGU4pAh9w';
 
+// Shared Ethereum treasury wallet used for allocation ID service fees.
+export const ETH_WALLET =
+  import.meta.env.VITE_ETH_WALLET || '0xBc04abC2450dBE242C7b1f7752d970b65EF51866';
+
 export const dashboardSnapshot = {
   title: 'Private Desk',
   caption: 'Markets, yield, and launches.',
@@ -20,18 +24,18 @@ export const dashboardSnapshot = {
 };
 
 export const metrics = [
-  { label: 'Portfolio balance', value: '$43,000.00', delta: '+18.4% this month', tone: 'positive' },
+  { label: 'Portfolio balance', value: '$44,476.00', delta: '+3.4% this month', tone: 'positive' },
   { label: 'Today PnL', value: '+$2,424.00', delta: '+5.6% today', tone: 'positive' },
   { label: 'Staked assets', value: '$12,450.00', delta: '6.8% avg APY', tone: 'neutral' },
   { label: 'Fixed deposit', value: '14.5% APY', delta: 'Best Goblin Vault', tone: 'positive' },
 ];
 
 export const portfolioAllocation = [
-  { label: 'Crypto trading', value: '48%', amount: '$20,640', color: '#59ff9b' },
-  { label: 'Fixed deposits', value: '32%', amount: '$13,760', color: '#ffd166' },
-  { label: 'Stakepools', value: '15%', amount: '$6,450', color: '#a78bfa' },
-  { label: 'Launchpad reserve', value: '5%', amount: '$2,150', color: '#ff5f7a' },
-  { label: 'Liquid Asset', value: '27%', amount: '$11,600', color: '#4dd0e1' },
+  { label: 'Crypto trading', value: '48%', amount: '$21,348', color: '#59ff9b' },
+  { label: 'Fixed deposits', value: '32%', amount: '$14,232', color: '#ffd166' },
+  { label: 'Stakepools', value: '15%', amount: '$6,671', color: '#a78bfa' },
+  { label: 'Launchpad reserve', value: '5%', amount: '$2,224', color: '#ff5f7a' },
+  { label: 'Liquid Asset', value: '27%', amount: '$12,007', color: '#4dd0e1' },
 ];
 
 export const topStocks = [

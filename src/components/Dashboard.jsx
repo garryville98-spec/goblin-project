@@ -10,16 +10,16 @@ import { usePortfolio } from '../hooks/usePortfolio.js';
 const fmt = (n) =>
   `$${Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
 
-const PORTFOLIO_TOTAL = 43000;
+const PORTFOLIO_TOTAL = 44476;
 
-// Demo capital allocation: total $43,000. Available cash is now $0; the
-// $11,600 previously shown as available cash is represented as Liquid asset.
+// Demo capital allocation: total $44,476. Available cash is now $0; the
+// $12,007 previously shown as available cash is represented as Liquid asset.
 const capitalAllocation = [
   { label: 'Available cash', amount: 0, color: '#59ff9b' },
-  { label: 'Liquid asset', amount: 11600, color: '#4dd0e1' },
-  { label: 'Fixed deposits', amount: 22400, color: '#ffd166' },
-  { label: 'Stakepools', amount: 6000, color: '#a78bfa' },
-  { label: 'Launchpad reserve', amount: 3000, color: '#ff5f7a' },
+  { label: 'Liquid asset', amount: 12007, color: '#4dd0e1' },
+  { label: 'Fixed deposits', amount: 23184, color: '#ffd166' },
+  { label: 'Stakepools', amount: 6205, color: '#a78bfa' },
+  { label: 'Launchpad reserve', amount: 3080, color: '#ff5f7a' },
 ].map((a) => ({
   ...a,
   value: `${Math.round((a.amount / PORTFOLIO_TOTAL) * 100)}%`,
