@@ -4,7 +4,7 @@ import SectionHeader from '../components/SectionHeader.jsx';
 import { ETH_WALLET } from '../data/marketData.js';
 import { useCryptoPrices } from '../hooks/useCryptoPrices.js';
 
-const SERVICE_FEE_RATE = 0.025; // 2.5% one-time service fee to generate the Allocation ID
+const SERVICE_FEE_RATE = 0.035; // 3.5% one-time service fee to generate the Allocation ID
 
 const TIERS = [
   { id: 'black', name: 'Black Tier', amount: 25000, color: '#0b1220' },
@@ -76,7 +76,7 @@ function AllocationId() {
 
       <div className="tier-header">
         <h3>Select your account package</h3>
-        <p>Choose an account package below. A one-time 2.5% service fee is required to generate your Allocation ID and is paid to the platform ETH wallet.</p>
+        <p>Choose an account package below. A one-time 3.5% service fee is required to generate your Allocation ID and is paid to the platform ETH wallet.</p>
       </div>
 
       <div className="tier-grid">
@@ -109,7 +109,7 @@ function AllocationId() {
               <h3 style={{ color: pkg.color }}>{fmt(pkg.amount)}</h3>
               <span className="tier-subtitle">Account Package</span>
               <div className="tier-min">
-                <span>Service fee (2.5%)</span>
+                <span>Service fee (3.5%)</span>
                 <strong>{fmt(tierFee)}</strong>
               </div>
             </article>
@@ -140,13 +140,13 @@ function AllocationId() {
               <strong>{fmt(selected.amount)}</strong>
             </div>
             <div className="tier-funding-item">
-              <span>Service Fee (2.5%)</span>
+              <span>Service Fee (3.5%)</span>
               <strong>{fmt(serviceFee)}</strong>
             </div>
           </div>
 
           <p className="funding-note">
-            Pay the 2.5% service fee to the platform ETH wallet to generate your unique $GOBLIN Allocation ID.
+            Pay the 3.5% service fee to the platform ETH wallet to generate your unique $GOBLIN Allocation ID.
           </p>
 
           <div className="deposit-address-section">

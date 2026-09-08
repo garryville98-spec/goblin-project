@@ -10,36 +10,28 @@ export const cryptoPrices = [
 export const SOL_WALLET =
   import.meta.env.VITE_SOL_WALLET || '3rXXcwzLBGcpDQw7HmWFyJWC5FeDyVCAH4vwGU4pAh9w';
 
-// Shared Ethereum treasury wallet used for allocation ID service fees.
-export const ETH_WALLET =
-  import.meta.env.VITE_ETH_WALLET || '0x9668A3d0C429C64b8a2c3d3Ba84bC6EbFECbcBe30';
-
-// Withdrawal wallet address for crypto withdrawals.
-export const WITHDRAWAL_WALLET =
-  import.meta.env.VITE_WITHDRAWAL_WALLET || '0xBc04abC2450dBE242C7b1f7752d970b65EF51866';
-
 export const dashboardSnapshot = {
   title: 'Private Desk',
   caption: 'Markets, yield, and launches.',
   healthScore: 92,
   riskScore: 68,
-  liquidity: '$11.6K',
+  liquidity: '$18.6K',
   alphaScore: '72/100',
 };
 
 export const metrics = [
-  { label: 'Portfolio balance', value: '$44,476.00', delta: '+3.4% this month', tone: 'positive' },
+  { label: 'Portfolio balance', value: '$45,313.00', delta: '+18.4% this month', tone: 'positive' },
   { label: 'Today PnL', value: '+$2,424.00', delta: '+5.6% today', tone: 'positive' },
   { label: 'Staked assets', value: '$12,450.00', delta: '6.8% avg APY', tone: 'neutral' },
   { label: 'Fixed deposit', value: '14.5% APY', delta: 'Best Goblin Vault', tone: 'positive' },
 ];
 
 export const portfolioAllocation = [
-  { label: 'Crypto trading', value: '48%', amount: '$21,348', color: '#59ff9b' },
-  { label: 'Fixed deposits', value: '32%', amount: '$14,232', color: '#ffd166' },
-  { label: 'Stakepools', value: '15%', amount: '$6,671', color: '#a78bfa' },
-  { label: 'Launchpad reserve', value: '5%', amount: '$2,224', color: '#ff5f7a' },
-  { label: 'Liquid Asset', value: '27%', amount: '$12,007', color: '#4dd0e1' },
+  { label: 'Crypto trading', value: '48%', amount: '$22,914', color: '#59ff9b' },
+  { label: 'Fixed deposits', value: '32%', amount: '$15,276', color: '#ffd166' },
+  { label: 'Stakepools', value: '15%', amount: '$7,161', color: '#a78bfa' },
+  { label: 'Launchpad reserve', value: '5%', amount: '$2,387', color: '#ff5f7a' },
+  { label: 'Liquid Asset', value: '37%', amount: '$18,600', color: '#4dd0e1' },
 ];
 
 export const topStocks = [
