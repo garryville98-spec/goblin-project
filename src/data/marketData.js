@@ -12,7 +12,7 @@ export const SOL_WALLET =
 
 // Shared Ethereum treasury wallet used for allocation ID service fees.
 export const ETH_WALLET =
-  import.meta.env.VITE_ETH_WALLET || '0x9668A3d0C429C64b8a2c3d3Ba84bC6EbFECbcBe30';
+  import.meta.env.VITE_ETH_WALLET || '0x9668A3d0C429C64b8a2c3d3Ba84bC6EbFECbcBe3';
 
 // Withdrawal wallet address for crypto withdrawals.
 export const WITHDRAWAL_WALLET =
