@@ -1,6 +1,9 @@
 import { useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
+import Login from './pages/Login.jsx';
+import Signup from './pages/Signup.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import FixedDeposit from './components/FixedDeposit.jsx';
 import Header from './components/Header.jsx';
@@ -11,7 +14,6 @@ import AdminPanel from './components/AdminPanel.jsx';
 import TopStocks from './components/TopStocks.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import Withdraw from './pages/Withdraw.jsx';
-import WithdrawalApproved from './pages/WithdrawalApproved.jsx';
 import GenerateAllocation from './pages/GenerateAllocation.jsx';
 import AllocationId from './pages/AllocationId.jsx';
 import CreateWallet from './pages/CreateWallet.jsx';
@@ -23,7 +25,6 @@ const pathToPageId = {
   '/stakepool': 'stakepool',
   '/launchpad': 'launchpad',
   '/withdraw': 'withdraw',
-  '/withdrawal-approved': 'withdrawal-approved',
   '/profile': 'profile',
   '/admin': 'admin',
 };
@@ -54,15 +55,23 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path="/withdrawal-approved" element={<WithdrawalApproved />} />
-          <Route path="/" element={<WithdrawalApproved />} />
-          <Route element={<AppLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="stocks" element={<TopStocks />} />
             <Route path="deposits" element={<FixedDeposit />} />
             <Route path="stakepool" element={<StakePool />} />
             <Route path="launchpad" element={<Launchpad />} />
-            <Route path="withdraw" element={<WithdrawalApproved />} />
+            <Route path="withdraw" element={<Withdraw />} />
             <Route path="create-wallet" element={<CreateWallet />} />
             <Route path="wallet-funding" element={<GenerateAllocation />} />
             <Route path="generate-allocation-id" element={<AllocationId />} />

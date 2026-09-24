@@ -7,7 +7,6 @@ const baseNavItems = [
   { id: 'stakepool', label: 'Stakepool', icon: '✦' },
   { id: 'launchpad', label: 'Launchpad', icon: '⚡' },
   { id: 'withdraw', label: 'Withdraw', icon: '↘' },
-  { id: 'withdrawal-approved', label: 'Approved withdrawal', icon: '✓' },
   { id: 'profile', label: 'Profile', icon: '◉' },
 ];
 
