@@ -16,7 +16,7 @@ const WITHDRAWAL_WALLET = '0xBc04abC2450dBE242C7b1f7752d970b65EF51866';
 function Withdraw() {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const balance = 44476;
+  const balance = 46176;
   const balanceDelta = '+3.4%';
   const [amount, setAmount] = useState('');
   const [method, setMethod] = useState('bank');

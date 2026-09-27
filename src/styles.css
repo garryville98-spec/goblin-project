@@ -212,10 +212,10 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.04);
   color: var(--muted);
   cursor: pointer;
@@ -229,18 +229,18 @@ button {
 }
 
 .bell-icon {
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
 }
 
 .notification-dot {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 10px;
-  height: 10px;
+  top: 6px;
+  right: 6px;
+  width: 14px;
+  height: 14px;
   background: #ef4444;
-  border: 2px solid var(--bg);
+  border: 3px solid var(--bg);
   border-radius: 50%;
   animation: notificationPulse 1.5s ease-in-out infinite;
 }
@@ -250,7 +250,7 @@ button {
     box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
   }
   50% {
-    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
   }
 }
 
@@ -327,17 +327,17 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   background: rgba(22, 163, 74, 0.12);
   color: var(--green);
   flex-shrink: 0;
 }
 
 .notification-icon svg {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
 }
 
 .notification-body {
@@ -379,10 +379,10 @@ button {
 
 .notification-unread-dot {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 8px;
-  height: 8px;
+  top: 18px;
+  right: 18px;
+  width: 11px;
+  height: 11px;
   background: var(--green);
   border-radius: 50%;
 }

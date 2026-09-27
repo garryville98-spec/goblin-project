@@ -18,7 +18,7 @@ function Payment() {
         <article className="panel payment-card">
           <span>Available balance</span>
           <div className="balance-value-row">
-            <strong>$44,476</strong>
+            <strong>$46,176.00</strong>
             <span className="balance-delta positive-text">+3.4%</span>
           </div>
           <p>Ready for deposits, withdrawals, vault funding, and launchpad reservations.</p>
