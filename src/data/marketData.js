@@ -28,7 +28,7 @@ export const dashboardSnapshot = {
 };
 
 export const metrics = [
-  { label: 'Portfolio balance', value: '$44,476.00', delta: '+3.4% this month', tone: 'positive' },
+  { label: 'Portfolio balance', value: '$46,176.00', delta: '+3.4% this month', tone: 'positive' },
   { label: 'Today PnL', value: '+$2,424.00', delta: '+5.6% today', tone: 'positive' },
   { label: 'Staked assets', value: '$12,450.00', delta: '6.8% avg APY', tone: 'neutral' },
   { label: 'Fixed deposit', value: '14.5% APY', delta: 'Best Goblin Vault', tone: 'positive' },

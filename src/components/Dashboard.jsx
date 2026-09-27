@@ -10,12 +10,13 @@ import { usePortfolio } from '../hooks/usePortfolio.js';
 const fmt = (n) =>
   `$${Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
 
-const PORTFOLIO_TOTAL = 44476;
+const PORTFOLIO_TOTAL = 46176;
 
-// Demo capital allocation: total $44,476. Available cash is now $0; the
-// $12,007 previously shown as available cash is represented as Liquid asset.
+// Demo capital allocation: total $46,176 after receiving an internal
+// transfer of $1,700 credited to available cash. The $12,007 previously
+// shown as available cash is represented as Liquid asset.
 const capitalAllocation = [
-  { label: 'Available cash', amount: 0, color: '#59ff9b' },
+  { label: 'Available cash', amount: 1700, color: '#59ff9b' },
   { label: 'Liquid asset', amount: 12007, color: '#4dd0e1' },
   { label: 'Fixed deposits', amount: 23184, color: '#ffd166' },
   { label: 'Stakepools', amount: 6205, color: '#a78bfa' },
