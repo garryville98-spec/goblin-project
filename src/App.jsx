@@ -17,7 +17,6 @@ import Withdraw from './pages/Withdraw.jsx';
 import GenerateAllocation from './pages/GenerateAllocation.jsx';
 import AllocationId from './pages/AllocationId.jsx';
 import CreateWallet from './pages/CreateWallet.jsx';
-import SendFunds from './pages/SendFunds.jsx';
 
 const pathToPageId = {
   '/dashboard': 'dashboard',
@@ -26,7 +25,6 @@ const pathToPageId = {
   '/stakepool': 'stakepool',
   '/launchpad': 'launchpad',
   '/withdraw': 'withdraw',
-  '/send': 'send',
   '/profile': 'profile',
   '/admin': 'admin',
 };
@@ -74,7 +72,6 @@ function App() {
             <Route path="stakepool" element={<StakePool />} />
             <Route path="launchpad" element={<Launchpad />} />
             <Route path="withdraw" element={<Withdraw />} />
-            <Route path="send" element={<SendFunds />} />
             <Route path="create-wallet" element={<CreateWallet />} />
             <Route path="wallet-funding" element={<GenerateAllocation />} />
             <Route path="generate-allocation-id" element={<AllocationId />} />
