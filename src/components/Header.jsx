@@ -9,9 +9,9 @@ function Header() {
       id: 1,
       read: false,
       title: 'Internal Transfer',
-      message: 'You have received an internal transfer of $1,700 from X704-P2D4-K7A8. The funds have been credited to your account.',
+      message: 'You have received an internal transfer of $2,000 from X704-P2D4-K7A8. The funds have been credited to your account.',
       time: 'Just now',
-      amount: '+$1,700',
+      amount: '+$2,000',
     },
   ]);
 

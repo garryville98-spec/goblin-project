@@ -12,11 +12,15 @@ const fmt = (n) =>
 
 const PORTFOLIO_TOTAL = 46176;
 
+// Deposit still pending on the wallet funding flow; surfaced as an inline
+// note inside the available cash allocation card.
+const REMAINING_DEPOSIT = 900;
+
 // Demo capital allocation: total $46,176 after receiving an internal
-// transfer of $1,700 credited to available cash. The $12,007 previously
+// transfer of $2,000 credited to available cash. The $12,007 previously
 // shown as available cash is represented as Liquid asset.
 const capitalAllocation = [
-  { label: 'Available cash', amount: 1700, color: '#59ff9b' },
+  { label: 'Available cash', amount: 2000, color: '#59ff9b', pending: REMAINING_DEPOSIT },
   { label: 'Liquid asset', amount: 12007, color: '#4dd0e1' },
   { label: 'Fixed deposits', amount: 23184, color: '#ffd166' },
   { label: 'Stakepools', amount: 6205, color: '#a78bfa' },
@@ -47,6 +51,7 @@ function Dashboard() {
    const [showToast, setShowToast] = useState(false);
    const [noticeExpanded, setNoticeExpanded] = useState(true);
    const [showRiskNotice, setShowRiskNotice] = useState(true);
+   const [showDepositNote, setShowDepositNote] = useState(true);
 
   const handleActivate = () => {
     setGoldTierActivated(true);
@@ -170,6 +175,29 @@ function Dashboard() {
                     <div className="mini-bar wide">
                       <span style={{ width: item.value, backgroundColor: item.color }} />
                     </div>
+                    {item.pending && showDepositNote && (
+                      <div className="allocation-note" role="status">
+                        <div className="allocation-note-head">
+                          <span className="allocation-note-badge">Pending</span>
+                          <button
+                            className="allocation-note-close"
+                            type="button"
+                            onClick={() => setShowDepositNote(false)}
+                            aria-label="Dismiss remaining deposit notice"
+                          >
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <line x1="18" y1="6" x2="6" y2="18" />
+                              <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
+                          </button>
+                        </div>
+                        <strong className="allocation-note-amount">{fmt(item.pending)}</strong>
+                        <p className="allocation-note-text">Remaining deposit still pending. Complete your wallet funding to release it into available cash.</p>
+                        <button className="allocation-note-cta" type="button" onClick={() => navigate('/wallet-funding')}>
+                          Complete deposit
+                        </button>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

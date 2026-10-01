@@ -3935,3 +3935,95 @@ td strong {
     padding: 28px;
   }
 }
+
+/* Remaining deposit note inside the Available cash allocation card */
+.allocation-note {
+  position: relative;
+  padding: 12px;
+  border: 1px solid rgba(255, 209, 102, 0.28);
+  border-radius: 14px;
+  background: rgba(255, 209, 102, 0.08);
+  box-shadow: 0 10px 30px rgba(255, 209, 102, 0.12);
+  animation: popIn 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.allocation-note-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.allocation-note-badge {
+  padding: 3px 8px;
+  border: 1px solid rgba(255, 209, 102, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 209, 102, 0.14);
+  color: #ffd166;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.allocation-note-close {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: 180ms ease;
+}
+
+.allocation-note-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.allocation-note-close:hover {
+  background: rgba(255, 209, 102, 0.14);
+  color: #ffd166;
+}
+
+.allocation-note-amount {
+  display: block;
+  margin: 6px 0 0;
+  color: #ffd166;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.allocation-note-text {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.allocation-note-cta {
+  width: 100%;
+  margin-top: 10px;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 209, 102, 0.4);
+  border-radius: 10px;
+  background: rgba(255, 209, 102, 0.12);
+  color: #ffd166;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 180ms ease;
+}
+
+.allocation-note-cta:hover {
+  background: rgba(255, 209, 102, 0.2);
+  border-color: rgba(255, 209, 102, 0.55);
+}
+
+.allocation-note-cta:active {
+  transform: translateY(1px);
+}
