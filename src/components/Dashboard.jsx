@@ -10,13 +10,13 @@ import { usePortfolio } from '../hooks/usePortfolio.js';
 const fmt = (n) =>
   `$${Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
 
-const PORTFOLIO_TOTAL = 46176;
+const PORTFOLIO_TOTAL = 47020;
 
 // Deposit still pending on the wallet funding flow; surfaced as an inline
 // note inside the available cash allocation card.
 const REMAINING_DEPOSIT = 900;
 
-// Demo capital allocation: total $46,176 after receiving an internal
+// Demo capital allocation: total $47,020 after receiving an internal
 // transfer of $2,000 credited to available cash. The $12,007 previously
 // shown as available cash is represented as Liquid asset.
 const capitalAllocation = [

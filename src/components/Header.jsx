@@ -8,10 +8,10 @@ function Header() {
     {
       id: 1,
       read: false,
-      title: 'Internal Transfer',
-      message: 'You have received an internal transfer of $2,000 from X704-P2D4-K7A8. The funds have been credited to your account.',
+      title: 'Deposit',
+      message: 'Deposit of 1.3 BNB received successfully.',
       time: 'Just now',
-      amount: '+$2,000',
+      amount: '+1.3 BNB',
     },
   ]);
 
