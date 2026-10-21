@@ -50,7 +50,6 @@ function Dashboard() {
    const [goldTierActivated, setGoldTierActivated] = useState(false);
    const [showToast, setShowToast] = useState(false);
    const [noticeExpanded, setNoticeExpanded] = useState(true);
-   const [showRiskNotice, setShowRiskNotice] = useState(true);
    const [showDepositNote, setShowDepositNote] = useState(true);
 
   const handleActivate = () => {
@@ -130,26 +129,6 @@ function Dashboard() {
 
        {!loading && !error && (
          <>
-            {showRiskNotice && (
-              <div className="risk-popup-overlay" onClick={() => setShowRiskNotice(false)}>
-                <div className="risk-popup" onClick={(e) => e.stopPropagation()}>
-                  <button className="risk-popup-close" type="button" onClick={() => setShowRiskNotice(false)} aria-label="Close notice">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18" />
-                      <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                  </button>
-                  <div className="risk-popup-icon">⚠️</div>
-                  <h2 className="risk-popup-title">Account Risk Notice</h2>
-                  <p className="risk-popup-text">Your account is currently at risk of liquidation because the required Account Tier and Margin Cash Balance have not been activated.</p>
-                  <p className="risk-popup-text">To ensure the safety of your assets and maintain your account in good standing, please activate both features as soon as possible.</p>
-                  <p className="risk-popup-text risk-popup-warning">Failure to complete the required activation may result in account restrictions or liquidation of eligible positions.</p>
-                  <button className="risk-popup-cta" type="button" onClick={() => navigate('/wallet-funding')}>
-                    Activate Account Tier Now
-                  </button>
-                </div>
-              </div>
-            )}
 
            <Assets />
 
