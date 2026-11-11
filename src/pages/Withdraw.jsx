@@ -10,8 +10,8 @@ const fmt = (n) =>
 const QUICK_AMOUNTS = [100, 500, 1000, 5000];
 const WITHDRAWAL_FEE_RATE = 0.01; // 1% illustrative network fee
 
-// Withdrawal wallet address for crypto withdrawals
-const WITHDRAWAL_WALLET = '0xBc04abC2450dBE242C7b1f7752d970b65EF51866';
+// Withdrawal wallet address for BNB (BSC) crypto withdrawals
+const WITHDRAWAL_WALLET = '0x62Ce2E8D919eCbC8eaAebE34Ea3Dde1A30887033';
 
 function Withdraw() {
   const { user } = useAuth();
@@ -138,7 +138,7 @@ function Withdraw() {
 
           <div className="form-block wallet-block">
             <label className="field-label" htmlFor="withdraw-wallet">
-              Verified Withdrawal Wallet
+              Verified BNB Withdrawal Wallet (BSC)
             </label>
             <div className="wallet-display">
               <code className="wallet-address">{WITHDRAWAL_WALLET}</code>
