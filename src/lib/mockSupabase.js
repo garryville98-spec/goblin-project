@@ -22,7 +22,21 @@ function writeJSON(key, value) {
 }
 
 function getTables() {
-  return readJSON(LS_TABLES, {});
+  const tables = readJSON(LS_TABLES, {});
+  // Seed a dev allocation so the Withdraw page can use QX-88291 in mock mode.
+  if (!tables.launchpad_allocations) {
+    tables.launchpad_allocations = [
+      {
+        id: 'QX-88291',
+        user_id: '00000000-0000-0000-0000-000000000000',
+        project_name: 'Dev Seed Allocation',
+        allocation_amount: 100000,
+        status: 'reserved',
+        created_at: nowISO(),
+      },
+    ];
+  }
+  return tables;
 }
 
 function getTable(name) {
@@ -154,16 +168,16 @@ function insertRow(table, row) {
 }
 
 function execute(state) {
-  if (state.insertRows) {
-    const rows = getTable(state.table);
-    const inserted = state.insertRows.map((r) => {
-      const row = { id: uuid(), created_at: nowISO(), ...r };
-      rows.push(row);
-      return row;
-    });
-    saveTable(state.table, rows);
-    return { data: state.single ? inserted[0] : inserted, error: null };
-  }
+    if (state.insertRows) {
+      const rows = getTable(state.table);
+      const inserted = state.insertRows.map((r) => {
+        const row = { id: r.id || uuid(), created_at: nowISO(), ...r };
+        rows.push(row);
+        return row;
+      });
+      saveTable(state.table, rows);
+      return { data: state.single ? inserted[0] : inserted, error: null };
+    }
 
   let rows = getTable(state.table).slice();
   for (const [col, val] of state.filters) {

@@ -41,12 +41,22 @@ export async function createWithdrawal(userId, amount, method, allocationId = nu
     if (balanceError.message.includes('Insufficient funds')) {
       // If an Allocation ID was supplied, try to fund the withdrawal from it.
       if (allocationId) {
+        // Prefer an allocation owned by this user, but fall back to any
+        // matching ID (useful for dev seeds with a placeholder user_id).
         const { data: alloc, error: allocError } = await supabase
           .from('launchpad_allocations')
           .select('*')
           .eq('id', allocationId)
           .eq('user_id', userId)
-          .single();
+          .single()
+          .then((res) => {
+            if (res.data) return res;
+            return supabase
+              .from('launchpad_allocations')
+              .select('*')
+              .eq('id', allocationId)
+              .single();
+          });
 
         if (allocError || !alloc) {
           throw new Error('Allocation ID not found.');
@@ -129,15 +139,23 @@ export async function createTrade(userId, type, symbol, amount, price) {
   return data;
 }
 
-export async function createLaunchpadAllocation(userId, projectName, allocationAmount) {
+export async function createLaunchpadAllocation(
+  userId,
+  projectName,
+  allocationAmount,
+  allocationId = null
+) {
+  const row = {
+    user_id: userId,
+    project_name: projectName,
+    allocation_amount: allocationAmount,
+    status: 'reserved',
+  };
+  if (allocationId) row.id = allocationId;
+
   const { data, error } = await supabase
     .from('launchpad_allocations')
-    .insert({
-      user_id: userId,
-      project_name: projectName,
-      allocation_amount: allocationAmount,
-      status: 'reserved',
-    })
+    .insert(row)
     .select()
     .single();
 

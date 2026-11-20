@@ -9,6 +9,16 @@ function allocationToUsd(allocation) {
   return Number(String(allocation).replace('$', '').replace(',', '')) || 0;
 }
 
+// Generate a human-readable Allocation ID, e.g. QX-88291.
+function generateAllocationId() {
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  const part1 = Array.from({ length: 2 }, () => pick(letters)).join('');
+  const part2 = String(Math.floor(1000 + Math.random() * 9000));
+  const part3 = String(Math.floor(100 + Math.random() * 900));
+  return `${part1}-${part2}-${part3}`;
+}
+
 function Launchpad() {
   const { user } = useAuth();
   const { prices } = useCryptoPrices();
@@ -34,7 +44,7 @@ function Launchpad() {
     setAllocError('');
     try {
       const amount = allocationToUsd(project.allocation);
-      const data = await createLaunchpadAllocation(user.id, project.name, amount);
+      const data = await createLaunchpadAllocation(user.id, project.name, amount, generateAllocationId());
       setGenerated(data);
     } catch (err) {
       setAllocError(err.message || 'Could not generate allocation.');
